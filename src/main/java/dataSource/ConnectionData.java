@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class ConnectionData {
 
-    public static final String DB_URL = "jdbc:mysql://localhost:3306/mysql";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/mysql/world?createDatabaseIfNotExist=true";
     public static final String DB_USER = "root";
     public static final String DB_PASSWORD = "root";
 

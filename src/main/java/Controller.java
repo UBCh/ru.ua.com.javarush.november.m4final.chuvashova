@@ -4,7 +4,7 @@ public class Controller {
 
     public static void main(String[] args){
 
-        new ValidatorLiquibase().changesDatabase();
+        new ValidatorLiquibase().changesDatabase(ValidatorLiquibase.VALIDATE_DB);
 
 
     }

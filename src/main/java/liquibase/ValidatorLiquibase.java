@@ -15,11 +15,14 @@ import java.util.Map;
 
 public class ValidatorLiquibase {
 
+    public static final String CREATE_DB = "liquibase/dump-hibernate-final.sql";
+    public static final String VALIDATE_DB = "liquibase/changelog.xml";
     public ValidatorLiquibase() {
     }
 
+
     @SneakyThrows
-    public void changesDatabase () {
+    public void changesDatabase (String path) {
 
 	Map<String, Object> config = new HashMap<>();
 
@@ -33,7 +36,7 @@ public class ValidatorLiquibase {
 			.findCorrectDatabaseImplementation(new JdbcConnection(connection));
 
 		Liquibase liquibase = new liquibase
-			.Liquibase("liquibase/changelog.xml", new ClassLoaderResourceAccessor(), database);
+			.Liquibase(path, new ClassLoaderResourceAccessor(), database);
 
 		liquibase.update(new Contexts(), new LabelExpression());
 	    });
