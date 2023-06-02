@@ -10,7 +10,7 @@
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
     <changeSet id="2023_June_02" author="Anonymous">
-        <sqlFile path="stocksChange/dump-hibernate-final.sql" dbms="mysql" relativeToChangelogFile="true" splitStatements="false"/>
+        <sqlFile path="stockChange/sqlScript/dump-hibernate-final.sql" dbms="mysql" relativeToChangelogFile="true" splitStatements="false"/>
     </changeSet>
 
 </databaseChangeLog>
