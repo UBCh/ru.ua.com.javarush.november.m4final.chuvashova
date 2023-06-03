@@ -1,4 +1,4 @@
-import liquibase.ValidatorLiquibase;
+import com.javarush.liquibase.ValidatorLiquibase;
 
 public class Controller {
 

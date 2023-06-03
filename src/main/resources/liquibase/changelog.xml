@@ -9,8 +9,13 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
-    <changeSet id="w" author="s">
+
+    <changeSet id="createBD1" author="Anonymous">
+
         <sqlFile path="liquibase/dump-hibernate-final.sql"/>
     </changeSet>
+
+
+
 </databaseChangeLog>
 
