@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 public class CountryLanguage {
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -37,12 +38,10 @@ public class CountryLanguage {
     private String language;
 
 
-
-
-
     @Column(name = "is_official",  nullable = false, columnDefinition = "BIT" )
     @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
-    private boolean isOfficial;
+    public Boolean isOfficial;
+
 
     @Column(name = "percentage",  nullable = false)
     private BigDecimal percentage;

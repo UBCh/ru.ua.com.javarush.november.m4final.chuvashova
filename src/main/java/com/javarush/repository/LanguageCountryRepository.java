@@ -1,7 +1,7 @@
 package com.javarush.repository;
 
 import com.javarush.entities.entitiesTables.CountryLanguage;
-import com.javarush.session_provider.SessionProvider;
+import com.javarush.dataSource.hibernate.session_provider.SessionProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

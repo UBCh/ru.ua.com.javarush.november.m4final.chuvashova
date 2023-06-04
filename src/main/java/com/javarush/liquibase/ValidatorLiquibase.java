@@ -1,7 +1,7 @@
 package com.javarush.liquibase;
 
 
-import com.javarush.dataSource.ConnectionData;
+import com.javarush.dataSource.liquibase.ConnectionData;
 import liquibase.Contexts;
 import liquibase.LabelExpression;
 import liquibase.Liquibase;

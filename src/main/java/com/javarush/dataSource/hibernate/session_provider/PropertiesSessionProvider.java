@@ -1,4 +1,4 @@
-package com.javarush.session_provider;
+package com.javarush.dataSource.hibernate.session_provider;
 
 
 

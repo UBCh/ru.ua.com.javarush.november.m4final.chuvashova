@@ -1,4 +1,4 @@
-package com.javarush.dataSource;
+package com.javarush.dataSource.liquibase;
 
 
 

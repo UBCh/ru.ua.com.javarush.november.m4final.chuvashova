@@ -5,8 +5,8 @@ import com.javarush.entities.entitiesTables.City;
 import com.javarush.entities.entitiesTables.Country;
 import com.javarush.repository.CityRepository;
 import com.javarush.repository.CountryRepository;
-import com.javarush.session_provider.PropertiesSessionProvider;
-import com.javarush.session_provider.SessionProvider;
+import com.javarush.dataSource.hibernate.session_provider.PropertiesSessionProvider;
+import com.javarush.dataSource.hibernate.session_provider.SessionProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

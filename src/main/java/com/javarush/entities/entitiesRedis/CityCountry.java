@@ -49,7 +49,7 @@ public class CityCountry {
 
     private Integer countryPopulation;
 
-    private Set<CountryLanguage> languages;
+    private Set<Language> languages;
 
 
 
