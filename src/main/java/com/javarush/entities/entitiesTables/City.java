@@ -1,4 +1,4 @@
-package com.javarush.entities;
+package com.javarush.entities.entitiesTables;
 
 
 import jakarta.persistence.*;
@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "city")
+@Table( schema = "world", name = "city")
 
 @NoArgsConstructor
 @Getter
@@ -17,8 +17,7 @@ import lombok.ToString;
 
 public class City  {
 
-
-    public City(String nameCity, Country country, String district, int population) {
+    public City(String nameCity, Country country, String district, Integer population) {
         this.nameCity = nameCity;
         this.country = country;
         this.district = district;
@@ -27,23 +26,23 @@ public class City  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idCity;
+    private Integer idCity;
 
 
     @Column(name = "name", length=35, nullable = false)
-    String nameCity;
+    private String nameCity;
 
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="country_id",insertable = false, updatable = false, columnDefinition = "TINYINT")
     public Country country;
 
 
     @Column(name = "district", length=20, nullable = false)
-    String district;
+    private String district;
 
     @Column(name = "population", nullable = false)
-    int population;
+    private Integer population;
 
 
 

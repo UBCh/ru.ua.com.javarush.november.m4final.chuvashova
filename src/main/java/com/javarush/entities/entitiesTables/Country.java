@@ -1,4 +1,4 @@
-package com.javarush.entities;
+package com.javarush.entities.entitiesTables;
 
 
 import jakarta.persistence.*;
@@ -7,8 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+import java.util.Set;
+
 @Entity
-@Table(name = "country")
+@Table(schema = "world", name = "country")
 
 @NoArgsConstructor
 @Getter
@@ -18,7 +21,7 @@ import lombok.ToString;
 public class Country {
 
 
-    public Country(String codeCountry, String codeCountryTwo, String nameCountry, int continent, String region, long surface_area, int indepYear, int population, long lifeExpectancy, long gnp, long gnpoId, String localName, String governmentForm, String headOfState, City city) {
+    public Country(String codeCountry, String codeCountryTwo, String nameCountry, Continent continent, String region, BigDecimal surface_area, Short indepYear, Integer population, BigDecimal lifeExpectancy, BigDecimal gnp, BigDecimal gnpoId, String localName, String governmentForm, String headOfState, Set<CountryLanguage> languages) {
         this.codeCountry = codeCountry;
         this.codeCountryTwo = codeCountryTwo;
         this.nameCountry = nameCountry;
@@ -33,60 +36,66 @@ public class Country {
         this.localName = localName;
         this.governmentForm = governmentForm;
         this.headOfState = headOfState;
-        this.city = city;
+        this.languages = languages;
     }
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idCountry;
+    private Integer idCountry;
 
 
     @Column(name = "code", length=3, nullable = false)
-    String codeCountry;
+   private String codeCountry;
 
     @Column(name = "code_2", length=2, nullable = false)
-    String codeCountryTwo;
+   private String codeCountryTwo;
 
     @Column(name = "name", length=52, nullable = false)
-    String nameCountry;
+    private String nameCountry;
 
     @Column(name = "continent", nullable = false)
-    int continent;
+    @Enumerated(EnumType.ORDINAL)
+    private Continent continent;
 
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "region", length=26, nullable = false)
     String region;
 
     @Column(name = "surface_area", nullable = false)
-    long surface_area;
+    private BigDecimal surface_area;
 
 
     @Column(name = "indep_year")
-    int indepYear;
+    private Short indepYear;
 
 
     @Column(name = "population", nullable = false)
-    int population;
+    private Integer population;
+
 
     @Column(name = "life_expectancy")
-    long  lifeExpectancy;
+    private BigDecimal  lifeExpectancy;
 
     @Column(name = "gnp")
-    long  gnp;
+    private BigDecimal  gnp;
 
     @Column(name = "gnpo_id")
-    long gnpoId;
+    private BigDecimal gnpoId;
 
     @Column(name = "local_name", length=45, nullable = false)
-    String localName;
+    private String localName;
 
     @Column(name = "government_form", length=45, nullable = false)
-    String governmentForm;
+   private String governmentForm;
 
     @Column(name = "head_of_state", length=60)
-    String headOfState;
+   private String headOfState;
 
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id")
+    private Set<CountryLanguage> languages;
 
     @OneToOne
     @JoinColumn(name="capital",insertable = false, updatable = false, columnDefinition = "TINYINT", nullable = false)

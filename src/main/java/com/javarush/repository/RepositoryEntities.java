@@ -1,16 +1,16 @@
 package com.javarush.repository;
 
 
-
+import java.util.List;
 
 public interface RepositoryEntities <T> {
 
-
-    void delete (T tableEntity);
+    List<T> getAll();
+    void delete (Integer id);
 
     void save(T tableEntity);
 
     void update(T tableEntity);
 
-   T findById(long id);
+   T findById(Integer id);
 }

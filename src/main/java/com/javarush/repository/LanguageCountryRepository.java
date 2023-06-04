@@ -1,13 +1,34 @@
 package com.javarush.repository;
 
-import com.javarush.entities.CountryLanguage;
+import com.javarush.entities.entitiesTables.CountryLanguage;
+import com.javarush.session_provider.SessionProvider;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class LanguageCountryRepository implements RepositoryEntities <CountryLanguage>{
+
+   private SessionProvider sessionProvider;
+
+    public LanguageCountryRepository(SessionProvider sessionProvider) {
+        this.sessionProvider = sessionProvider;
+    }
+
+    public List<CountryLanguage> getAll() {
+        SessionFactory sessionFactory = sessionProvider.getSessionFactory();
+        try(
+                Session session=sessionFactory.openSession()) {
+            Query<CountryLanguage> query = session.createQuery("from CountryLanguage ", CountryLanguage.class);
+            return query.list();
+        }}
+
 
 
 
     @Override
-    public void delete(CountryLanguage tableEntity) {
+    public void delete(Integer id) {
 
     }
 
@@ -22,7 +43,7 @@ public class LanguageCountryRepository implements RepositoryEntities <CountryLan
     }
 
     @Override
-    public CountryLanguage findById(long id) {
+    public CountryLanguage findById(Integer id) {
 	return null;
     }
 }
