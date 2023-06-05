@@ -23,23 +23,26 @@ import java.util.stream.Collectors;
 
 public class RedisService {
 
+   private ObjectMapper mapper = new ObjectMapper();
+   public RedisClientCreator creatorRedis=new RedisClientCreator();
 
 
-    private List<CityCountry> transformData(List<City> cities) {
+
+    public List<CityCountry> transformData(List<City> cities) {
         return cities.stream().map(city -> {
             CityCountry cityCountry = new CityCountry();
-            cityCountry.setIdCity(city.getIdCity());
-            cityCountry.setNameCity(city.getNameCity());
+            cityCountry.setIdCity(city.getId());
+            cityCountry.setNameCity(city.getName());
             cityCountry.setDistrict(city.getDistrict());
             cityCountry.setPopulation(city.getPopulation());
             Country country = city.getCountry();
-            cityCountry.setNameCountry(country.getNameCountry());
+            cityCountry.setNameCountry(country.getName());
             cityCountry.setContinent(country.getContinent());
-            cityCountry.setCodeCountry(country.getCodeCountry());
-            cityCountry.setCodeCountryTwo(country.getCodeCountryTwo());
+            cityCountry.setCodeCountry(country.getCode());
+            cityCountry.setCodeCountryTwo(country.getAlternativeCode());
             cityCountry.setCountryPopulation(country.getPopulation());
             cityCountry.setRegion(country.getRegion());
-            cityCountry.setSurface_area(country.getSurface_area());
+            cityCountry.setSurface_area(country.getSurfaceArea());
             Set<CountryLanguage> countryLanguages = country.getLanguages();
             Set<Language> languages = countryLanguages.stream().map(langC -> {
                 Language language = new Language();
@@ -53,12 +56,11 @@ public class RedisService {
         }).collect(Collectors.toList());
     }
 
-    private void pushToRedis(List<CityCountry> data) {
-        RedisClientCreator creatorRedis=new RedisClientCreator();
+    public void pushToRedis(List<CityCountry> data) {
+
         try (StatefulRedisConnection<String, String> connection = creatorRedis.prepareRedisClient().connect()) {
             RedisStringCommands<String, String> sync = connection.sync();
-            ObjectMapper mapper = new ObjectMapper();
-            for (CityCountry cityCountry : data) {
+               for (CityCountry cityCountry : data) {
                 try {
                     sync.set(String.valueOf(cityCountry.getIdCity()), mapper.writeValueAsString(cityCountry));
 
@@ -67,6 +69,21 @@ public class RedisService {
                 }
             }
 
+        }
+    }
+
+    public void testRedisData(List<Integer> ids) {
+
+        try (StatefulRedisConnection<String, String> connection = creatorRedis.prepareRedisClient().connect()) {
+            RedisStringCommands<String, String> sync = connection.sync();
+            for (Integer id : ids) {
+                String value = sync.get(String.valueOf(id));
+                try {
+                    mapper.readValue(value, CityCountry.class);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

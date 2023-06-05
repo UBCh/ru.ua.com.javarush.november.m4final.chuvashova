@@ -10,15 +10,15 @@ import java.util.List;
 
 public class CityRepository implements RepositoryEntities<City> {
 
-    private SessionProvider sessionProvider;
+    SessionFactory sessionFactory;
 
-    public CityRepository(SessionProvider sessionProvider) {
-        this.sessionProvider = sessionProvider;
+
+    public CityRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-
     public List<City> getAll() {
-        SessionFactory sessionFactory = sessionProvider.getSessionFactory();
+
         try (
                 Session session = sessionFactory.openSession()) {
             Query<City> query = session.createQuery("from City ", City.class);
@@ -28,8 +28,7 @@ public class CityRepository implements RepositoryEntities<City> {
 
 
     public List<City> getItems(int offset, int limit) {
-        SessionFactory sessionFactory = sessionProvider.getSessionFactory();
-        try (
+              try (
                 Session session = sessionFactory.openSession()) {
             Query<City> query = session.createQuery("from City ", City.class);
             query.setFirstResult(offset);
@@ -40,13 +39,14 @@ public class CityRepository implements RepositoryEntities<City> {
 
 
     public int getTotalCountCity() {
-        SessionFactory sessionFactory = sessionProvider.getSessionFactory();
+
         try (
                 Session session = sessionFactory.openSession()) {
             Query<Long> query = session.createQuery("select count(c) from City c", Long.class);
            return Math.toIntExact(query.uniqueResult());
         }
     }
+
 
     @Override
     public void delete(Integer id) {
@@ -65,6 +65,9 @@ public class CityRepository implements RepositoryEntities<City> {
 
     @Override
     public City findById(Integer id) {
-        return null;
+
+        Query<City> query = sessionFactory.openSession().createQuery("select c from City c join fetch c.country where c.id = :ID", City.class);
+        query.setParameter("ID", id);
+        return query.getSingleResult();
     }
 }

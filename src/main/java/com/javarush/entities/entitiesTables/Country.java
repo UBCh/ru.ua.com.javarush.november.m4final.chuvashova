@@ -20,86 +20,74 @@ import java.util.Set;
 
 public class Country {
 
-
-    public Country(String codeCountry, String codeCountryTwo, String nameCountry, Continent continent, String region, BigDecimal surface_area, Short indepYear, Integer population, BigDecimal lifeExpectancy, BigDecimal gnp, BigDecimal gnpoId, String localName, String governmentForm, String headOfState, Set<CountryLanguage> languages) {
-        this.codeCountry = codeCountry;
-        this.codeCountryTwo = codeCountryTwo;
-        this.nameCountry = nameCountry;
+    public Country(String code, String alternativeCode, String name, Continent continent, String region, BigDecimal surfaceArea, Short independenceYear, Integer population, BigDecimal lifeExpectancy, BigDecimal GNP, BigDecimal GNPOId, String localName, String governmentForm, String headOfState, City city, Set<CountryLanguage> languages) {
+        this.code = code;
+        this.alternativeCode = alternativeCode;
+        this.name = name;
         this.continent = continent;
         this.region = region;
-        this.surface_area = surface_area;
-        this.indepYear = indepYear;
+        this.surfaceArea = surfaceArea;
+        this.independenceYear = independenceYear;
         this.population = population;
         this.lifeExpectancy = lifeExpectancy;
-        this.gnp = gnp;
-        this.gnpoId = gnpoId;
+        this.GNP = GNP;
+        this.GNPOId = GNPOId;
         this.localName = localName;
         this.governmentForm = governmentForm;
         this.headOfState = headOfState;
+        this.city = city;
         this.languages = languages;
     }
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCountry;
+    private Integer id;
 
+    private String code;
 
-    @Column(name = "code", length=3, nullable = false)
-   private String codeCountry;
+    @Column(name = "code_2")
+    private String alternativeCode;
 
-    @Column(name = "code_2", length=2, nullable = false)
-   private String codeCountryTwo;
+    private String name;
 
-    @Column(name = "name", length=52, nullable = false)
-    private String nameCountry;
-
-    @Column(name = "continent", nullable = false)
+    @Column(name = "continent")
     @Enumerated(EnumType.ORDINAL)
     private Continent continent;
 
+    private String region;
 
-    @Column(name = "region", length=26, nullable = false)
-    String region;
-
-    @Column(name = "surface_area", nullable = false)
-    private BigDecimal surface_area;
-
+    @Column(name = "surface_area")
+    private BigDecimal surfaceArea;
 
     @Column(name = "indep_year")
-    private Short indepYear;
+    private Short independenceYear;
 
-
-    @Column(name = "population", nullable = false)
     private Integer population;
 
-
     @Column(name = "life_expectancy")
-    private BigDecimal  lifeExpectancy;
+    private BigDecimal lifeExpectancy;
 
     @Column(name = "gnp")
-    private BigDecimal  gnp;
+    private BigDecimal GNP;
 
     @Column(name = "gnpo_id")
-    private BigDecimal gnpoId;
+    private BigDecimal GNPOId;
 
-    @Column(name = "local_name", length=45, nullable = false)
+    @Column(name = "local_name")
     private String localName;
 
-    @Column(name = "government_form", length=45, nullable = false)
-   private String governmentForm;
+    @Column(name = "government_form")
+    private String governmentForm;
 
-    @Column(name = "head_of_state", length=60)
-   private String headOfState;
-
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
-    private Set<CountryLanguage> languages;
+    @Column(name = "head_of_state")
+    private String headOfState;
 
     @OneToOne
-    @JoinColumn(name="capital",insertable = false, updatable = false, columnDefinition = "TINYINT", nullable = false)
-    public City city;
+    @JoinColumn(name = "capital")
+    private City city;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id")
+    private Set<CountryLanguage> languages;
 
 }

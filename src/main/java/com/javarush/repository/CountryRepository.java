@@ -9,14 +9,15 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class CountryRepository implements RepositoryEntities <Country> {
-  private   SessionProvider sessionProvider;
 
-    public CountryRepository(SessionProvider sessionProvider) {
-        this.sessionProvider = sessionProvider;
+    SessionFactory sessionFactory;
+
+    public CountryRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     public List<Country> getAll() {
-        SessionFactory sessionFactory = sessionProvider.getSessionFactory();
+
         try(
                 Session session=sessionFactory.openSession()) {
             Query<Country> query = session.createQuery("select c from Country c join fetch c.languages", Country.class);

@@ -19,30 +19,28 @@ import java.math.BigDecimal;
 
 public class CountryLanguage {
 
-
+    public CountryLanguage(Country country, String language, Boolean isOfficial, BigDecimal percentage) {
+        this.country = country;
+        this.language = language;
+        this.isOfficial = isOfficial;
+        this.percentage = percentage;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-   private Integer idLanguage;
-
-
-
+    private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="country_id",insertable = false, updatable = false, columnDefinition = "TINYINT")
+    @JoinColumn(name = "country_id")
     private Country country;
 
-
-    @Column(name = "language", length=30, nullable = false)
     private String language;
 
-
-    @Column(name = "is_official",  nullable = false, columnDefinition = "BIT" )
+    @Column(name = "is_official", columnDefinition = "BIT")
     @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
-    public Boolean isOfficial;
+    private Boolean isOfficial;
 
-
-    @Column(name = "percentage",  nullable = false)
     private BigDecimal percentage;
+
 }

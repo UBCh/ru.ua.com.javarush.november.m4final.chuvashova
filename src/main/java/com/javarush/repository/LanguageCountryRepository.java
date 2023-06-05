@@ -10,14 +10,14 @@ import java.util.List;
 
 public class LanguageCountryRepository implements RepositoryEntities <CountryLanguage>{
 
-   private SessionProvider sessionProvider;
+    SessionFactory sessionFactory;
 
-    public LanguageCountryRepository(SessionProvider sessionProvider) {
-        this.sessionProvider = sessionProvider;
+    public LanguageCountryRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     public List<CountryLanguage> getAll() {
-        SessionFactory sessionFactory = sessionProvider.getSessionFactory();
+
         try(
                 Session session=sessionFactory.openSession()) {
             Query<CountryLanguage> query = session.createQuery("from CountryLanguage ", CountryLanguage.class);
