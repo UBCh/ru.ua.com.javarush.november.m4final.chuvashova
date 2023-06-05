@@ -16,7 +16,7 @@ public class RedisClientCreator {
 
 	RedisClient redisClient = create(RedisURI.create("localhost", 6379));
 	try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
-	 	}
+	}
 	return redisClient;
     }
 }

@@ -12,7 +12,6 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import lombok.SneakyThrows;
 
-
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,18 +20,19 @@ public class ValidatorLiquibase {
 
     public static final String CREATE_DB = "liquibase/dump-hibernate-final.sql";
     public static final String VALIDATE_DB = "liquibase/changelog.xml";
+
     public ValidatorLiquibase() {
     }
 
 
     @SneakyThrows
-    public void changesDatabase (String path) {
+    public void changesDatabase(String path) {
 
 	Map<String, Object> config = new HashMap<>();
 
 	Connection connection = ConnectionData.getConnection();
 
-	try (connection){
+	try (connection) {
 	    Scope.child(config, () -> {
 
 		Database database = DatabaseFactory
@@ -46,8 +46,6 @@ public class ValidatorLiquibase {
 	    });
 	}
 
-
     }
-
 
 }

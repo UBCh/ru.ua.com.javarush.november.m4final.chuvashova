@@ -39,6 +39,7 @@ public class Country {
         this.languages = languages;
     }
 
+
     @Id
     @Column(name = "id")
     private Integer id;
@@ -89,5 +90,7 @@ public class Country {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
     private Set<CountryLanguage> languages;
+
+
 
 }

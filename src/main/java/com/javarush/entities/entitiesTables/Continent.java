@@ -7,8 +7,6 @@ public enum Continent {
     AFRICA,
     OCEANIA,
     ANTARCTICA,
-    SOUTH_AMERICA;
-
-
+    SOUTH_AMERICA
 
 }

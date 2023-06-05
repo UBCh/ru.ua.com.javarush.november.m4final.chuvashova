@@ -8,15 +8,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table( schema = "world", name = "city")
+@Table(schema = "world", name = "city")
 
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 
-public class City  {
-
+public class City {
 
     public City(String name, Country country, String district, Integer population) {
         this.name = name;
@@ -38,7 +37,5 @@ public class City  {
     private String district;
 
     private Integer population;
-
-
 
 }

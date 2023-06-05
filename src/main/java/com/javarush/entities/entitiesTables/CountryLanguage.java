@@ -26,6 +26,7 @@ public class CountryLanguage {
         this.percentage = percentage;
     }
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -42,5 +43,7 @@ public class CountryLanguage {
     private Boolean isOfficial;
 
     private BigDecimal percentage;
+
+
 
 }

@@ -1,11 +1,7 @@
 package com.javarush.entities.entitiesRedis;
 
 
-import com.javarush.entities.entitiesTables.City;
 import com.javarush.entities.entitiesTables.Continent;
-import com.javarush.entities.entitiesTables.Country;
-import com.javarush.entities.entitiesTables.CountryLanguage;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,9 +28,9 @@ public class CityCountry {
 
     private Integer idCountry;
 
-   private String codeCountry;
+    private String codeCountry;
 
-     private String codeCountryTwo;
+    private String codeCountryTwo;
 
     private String nameCountry;
 
@@ -50,8 +46,5 @@ public class CityCountry {
     private Integer countryPopulation;
 
     private Set<Language> languages;
-
-
-
 
 }
