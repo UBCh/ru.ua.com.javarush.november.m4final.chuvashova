@@ -21,10 +21,13 @@ public class Controller {
 
     public static void main(String[] args) throws IOException {
 	createBDWorld();
-
 	prepareForRedisForTest();
+     	List<Integer> ids = List.of(3, 2545, 123, 4, 189, 89, 3458, 1189, 10, 102);
 
-	List<Integer> ids = List.of(3, 2545, 123, 4, 189, 89, 3458, 1189, 10, 102);
+
+	long startH2DB = System.currentTimeMillis();
+	h2DBService.testMysqlData(ids);
+	long stopH2DB = System.currentTimeMillis();
 
 	long startRedis = System.currentTimeMillis();
 	redisService.testRedisData(ids);
@@ -36,7 +39,7 @@ public class Controller {
 
 	System.out.printf("%s:\t%d ms\n", "Redis", (stopRedis - startRedis));
 	System.out.printf("%s:\t%d ms\n", "MySQL", (stopMysql - startMysql));
-	h2DBService.shouBD();
+	System.out.printf("%s:\t%d ms\n", "MySQL", (stopH2DB - startH2DB));
     }
 
 

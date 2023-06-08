@@ -1,6 +1,9 @@
 package com.javarush.dataSource.hibernate.session_provider;
 
 
+import com.javarush.entities.H2DB.CityH2DB;
+import com.javarush.entities.H2DB.CountryH2DB;
+import com.javarush.entities.H2DB.CountryLanguageH2DB;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
@@ -32,9 +35,9 @@ public class PropertiesSessionProviderH2DB implements SessionProvider {
     public SessionFactory getSessionFactory() {
 	return new Configuration()
 		.addProperties(properties)
-//		.addAnnotatedClass(CityH2DB.class)
-//		.addAnnotatedClass(CountryH2DB.class)
-//		.addAnnotatedClass(CountryLanguageH2DB.class)
+		.addAnnotatedClass(CityH2DB.class)
+		.addAnnotatedClass(CountryH2DB.class)
+		.addAnnotatedClass(CountryLanguageH2DB.class)
 		.buildSessionFactory();
 
     }

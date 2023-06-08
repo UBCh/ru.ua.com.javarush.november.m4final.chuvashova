@@ -1,9 +1,14 @@
 package com.javarush.repository;
 
+import com.javarush.entities.H2DB.CityH2DB;
+import com.javarush.entities.H2DB.CountryH2DB;
+import com.javarush.entities.H2DB.CountryLanguageH2DB;
+import com.javarush.entities.entitiesTables.City;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,62 +16,18 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class H2DBRepository implements RepositoryEntities{
-   private String path1="src/main/resources/create.sql";
-   private String path2="src/main/resources/data.sql";
 
-//    CountryH2DB countryH2DB;
-//    CityH2DB cityH2DB;
-//    CountryLanguageH2DB countryLanguageH2DB;
+   private String path="src/main/resources/data.sql";
+
+
 
 
     static SessionFactory sessionFactory;
 
     public H2DBRepository(SessionFactory sessionFactory) throws IOException {
 	this.sessionFactory = sessionFactory;
-//	createBD();
-	runSqlScriptFile(path1);
-	runSqlScriptFile(path2);
+	runSqlScriptFile(path);
     }
-
-
-
-
-//
-//
-//    private  void createBD(){
-//   prepareData();
-//    try (Session session = sessionFactory.openSession()) {
-//    session.beginTransaction();
-//
-//    session.persist(cityH2DB);
-//
-//	session.persist(countryH2DB);
-//	session.persist(countryLanguageH2DB);
-//      session.getTransaction().commit();}}
-//
-//
-//
-//private void prepareData(){
-//
-//    countryH2DB = new CountryH2DB(1,"Australia","Oceania", 120000,5,1);
-//     cityH2DB=new CityH2DB(5,"Camberra",1,"Camberra",1000000);
-//    countryLanguageH2DB=new CountryLanguageH2DB(1,"England");
-//
-//}
-//
-//
-//    public  void shouBD(){
-//
-//	try (Session session = sessionFactory.openSession()) {
-//	    session.beginTransaction();
-//	    CityH2DB getted_entity = session.get(CityH2DB.class, 5);
-//	    System.out.println(getted_entity);
-//	    session.getTransaction().commit();}
-//    }
-//
-
-
-
 
      private void runSqlScriptFile(String p) throws IOException {
 	String sqlScript = new String(Files.readAllBytes(Paths.get(p)));
@@ -78,6 +39,8 @@ public class H2DBRepository implements RepositoryEntities{
 	nativeQuery.executeUpdate();
 
 	scriptSession.getTransaction().commit();}
+
+
 
 
 
@@ -105,5 +68,27 @@ public class H2DBRepository implements RepositoryEntities{
     public Object findById(Integer id) {
 
 	return null;
+    }
+
+    public CityH2DB findByIdCity(Integer id) {
+
+	Query<CityH2DB> query = sessionFactory.openSession().createQuery("from CityH2DB ", CityH2DB.class);
+	query.setParameter("id", id);
+	return query.getSingleResult();
+
+    }
+
+    public CountryH2DB findByIdCountry(Long countryId) {
+	Query<CountryH2DB> query = sessionFactory.openSession().createQuery("from CountryH2DB ", CountryH2DB.class);
+	query.setParameter("ID", countryId);
+	return query.getSingleResult();
+
+
+    }
+
+    public CountryLanguageH2DB findByIdLanguage(long languagesId) {
+	Query<CountryLanguageH2DB> query = sessionFactory.openSession().createQuery("from CountryLanguageH2DB ", CountryLanguageH2DB.class);
+	query.setParameter("ID", languagesId);
+	return query.getSingleResult();
     }
 }
