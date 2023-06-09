@@ -1,12 +1,10 @@
 package com.javarush.repository;
 
-import com.javarush.entities.H2DB.CityH2DB;
-import com.javarush.entities.H2DB.CountryH2DB;
-import com.javarush.entities.H2DB.CountryLanguageH2DB;
-import com.javarush.entities.entitiesTables.City;
+import com.javarush.entities.entitiesH2DB.CityH2DB;
+import com.javarush.entities.entitiesH2DB.CountryH2DB;
+import com.javarush.entities.entitiesH2DB.CountryLanguageH2DB;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 

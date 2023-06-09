@@ -1,15 +1,11 @@
-package com.javarush.entities.H2DB;
+package com.javarush.entities.entitiesH2DB;
 
 
-import com.javarush.entities.entitiesTables.City;
-import com.javarush.entities.entitiesTables.Continent;
-import com.javarush.entities.entitiesTables.CountryLanguage;
-import jakarta.persistence.*;
-import liquibase.datatype.core.VarcharType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
-
-import java.math.BigDecimal;
-import java.util.Set;
 
 @Entity
 @Table(name = "countryH2DB")
@@ -21,7 +17,6 @@ import java.util.Set;
 @ToString
 
 public class CountryH2DB {
-
 
 
     @Id
@@ -40,14 +35,11 @@ public class CountryH2DB {
     private long population;
 
 
-
     @Column(name = "capital")
     private long cityId;
 
 
     @Column(name = "language")
     private long languagesId;
-
-
 
 }

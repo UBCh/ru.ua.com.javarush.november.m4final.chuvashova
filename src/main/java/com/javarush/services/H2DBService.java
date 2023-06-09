@@ -3,14 +3,9 @@ package com.javarush.services;
 
 import com.javarush.dataSource.hibernate.session_provider.SessionProvider;
 
-import com.javarush.entities.H2DB.CityH2DB;
-import com.javarush.entities.H2DB.CountryH2DB;
-import com.javarush.entities.H2DB.CountryLanguageH2DB;
-import com.javarush.entities.entitiesTables.City;
-import com.javarush.entities.entitiesTables.Country;
-import com.javarush.entities.entitiesTables.CountryLanguage;
-import com.javarush.repository.CityRepository;
-import com.javarush.repository.CountryRepository;
+import com.javarush.entities.entitiesH2DB.CityH2DB;
+import com.javarush.entities.entitiesH2DB.CountryH2DB;
+import com.javarush.entities.entitiesH2DB.CountryLanguageH2DB;
 import com.javarush.repository.H2DBRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class H2DBService {
 
@@ -50,7 +44,11 @@ public class H2DBService {
 		hashMap.put(id,list);
 			    }
 	    session.getTransaction().commit();
+	   	}
+	for (int i: hashMap.keySet()) {
+	    System.out.println(i+"-"+hashMap.get(i));
 	}
+
     }
 
 

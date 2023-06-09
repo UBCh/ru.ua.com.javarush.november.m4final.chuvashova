@@ -10,7 +10,7 @@
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
 
-    <changeSet id="_create__BD__world_" author="Anonymous">
+    <changeSet id="__create__newBD__world__" author="Anonymous">
 
         <sqlFile path="liquibase/dump-hibernate-final.sql"/>
     </changeSet>
