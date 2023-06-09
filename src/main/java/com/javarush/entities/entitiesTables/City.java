@@ -17,13 +17,6 @@ import lombok.ToString;
 
 public class City {
 
-    public City(String name, Country country, String district, Integer population) {
-        this.name = name;
-        this.country = country;
-        this.district = district;
-        this.population = population;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -37,5 +30,12 @@ public class City {
     private String district;
 
     private Integer population;
+
+    public City(String name, Country country, String district, Integer population) {
+	this.name = name;
+	this.country = country;
+	this.district = district;
+	this.population = population;
+    }
 
 }
