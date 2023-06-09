@@ -72,23 +72,23 @@ public class H2DBRepository implements RepositoryEntities{
 
     public CityH2DB findByIdCity(Integer id) {
 
-	Query<CityH2DB> query = sessionFactory.openSession().createQuery("from CityH2DB ", CityH2DB.class);
+	Query<CityH2DB> query = sessionFactory.openSession().createQuery("from CityH2DB where id= :id", CityH2DB.class);
 	query.setParameter("id", id);
 	return query.getSingleResult();
 
     }
 
     public CountryH2DB findByIdCountry(Long countryId) {
-	Query<CountryH2DB> query = sessionFactory.openSession().createQuery("from CountryH2DB ", CountryH2DB.class);
-	query.setParameter("ID", countryId);
+	Query<CountryH2DB> query = sessionFactory.openSession().createQuery("from CountryH2DB where id= :id", CountryH2DB.class);
+	query.setParameter("id", countryId);
 	return query.getSingleResult();
 
 
     }
 
     public CountryLanguageH2DB findByIdLanguage(long languagesId) {
-	Query<CountryLanguageH2DB> query = sessionFactory.openSession().createQuery("from CountryLanguageH2DB ", CountryLanguageH2DB.class);
-	query.setParameter("ID", languagesId);
+	Query<CountryLanguageH2DB> query = sessionFactory.openSession().createQuery("from CountryLanguageH2DB where id= :id", CountryLanguageH2DB.class);
+	query.setParameter("id", languagesId);
 	return query.getSingleResult();
     }
 }

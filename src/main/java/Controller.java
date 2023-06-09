@@ -39,7 +39,7 @@ public class Controller {
 
 	System.out.printf("%s:\t%d ms\n", "Redis", (stopRedis - startRedis));
 	System.out.printf("%s:\t%d ms\n", "MySQL", (stopMysql - startMysql));
-	System.out.printf("%s:\t%d ms\n", "MySQL", (stopH2DB - startH2DB));
+	System.out.printf("%s:\t%d ms\n", "H2DB", (stopH2DB - startH2DB));
     }
 
 
